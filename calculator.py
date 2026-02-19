@@ -1,21 +1,59 @@
-"""A simple Python calculator."""
+"""A tiny calculator module.
+
+This file can be imported as a module (for unit testing/reuse) and can also be
+run as a script for an interactive prompt.
+"""
 
 
-def subtract(a: float, b: float) -> float:
-    """Return the difference of a and b."""
-    return a - b
+def add(x, y):
+    return x + y
 
 
-def multiply(a: float, b: float) -> float:
-    """Return the product of a and b."""
-    return a * b
+def subtract(x, y):
+    return x - y
 
 
-def divide(a: float, b: float) -> float:
-    """Return the quotient of a and b. Raises ValueError on division by zero."""
-    if b == 0:
-        raise ValueError("Cannot divide by zero.")
-    return a / b
+def multiply(x, y):
+    return x * y
 
 
-# TODO: add(a, b) – see GitHub issue #1
+def divide(x, y):
+    """Divide x by y.
+
+    Raises:
+        ValueError: if y is 0.
+    """
+    if y == 0:
+        raise ValueError("Cannot divide by zero")
+    return x / y
+
+
+def main():
+    print("Select operation:")
+    print("1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+
+    choice = input("Enter choice(1/2/3/4): ")
+
+    num1 = float(input("Enter first number: "))
+    num2 = float(input("Enter second number: "))
+
+    try:
+        if choice == "1":
+            print(num1, "+", num2, "=", add(num1, num2))
+        elif choice == "2":
+            print(num1, "-", num2, "=", subtract(num1, num2))
+        elif choice == "3":
+            print(num1, "*", num2, "=", multiply(num1, num2))
+        elif choice == "4":
+            print(num1, "/", num2, "=", divide(num1, num2))
+        else:
+            print("Invalid input")
+    except ValueError as e:
+        print(e)
+
+
+if __name__ == "__main__":
+    main()
